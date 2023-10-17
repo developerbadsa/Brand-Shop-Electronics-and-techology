@@ -1,9 +1,10 @@
+import Banner from "./Sections/Banner/Banner";
 
 
 const Home = () => {
     return (
         <div className="container mx-auto">
-            home
+            <Banner></Banner>
         </div>
     );
 };
