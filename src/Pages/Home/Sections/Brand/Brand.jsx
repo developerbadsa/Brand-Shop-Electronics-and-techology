@@ -25,8 +25,11 @@ const Brand = () => {
                     brands.map((brand) => {
 
                         const { _id, brandName, brandImage } = brand;
+
+                        const brand_name_lowecase = brandName.toLowercase()
+                        
                         return (
-                            <Link to={`brand/${_id}`} key={_id} className="card w-96 p-6 bg-base-100 shadow-xl">
+                            <Link to={`brand/${brand_name_lowecase}`} key={_id} className="card w-96 p-6 bg-base-100 shadow-xl">
                                 <div className="card-body mx-auto">
                                     <h2 className="card-title font-semibold text-slate-600 text-3xl ">{brandName}</h2>
                                 </div>
