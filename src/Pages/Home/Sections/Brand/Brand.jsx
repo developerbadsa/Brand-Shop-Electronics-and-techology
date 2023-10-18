@@ -26,7 +26,7 @@ const Brand = () => {
 
                         const { _id, brandName, brandImage } = brand;
 
-                        const brand_name_lowecase = brandName.toLowercase()
+                        const brand_name_lowecase = brandName
                         
                         return (
                             <Link to={`brand/${brand_name_lowecase}`} key={_id} className="card w-96 p-6 bg-base-100 shadow-xl">

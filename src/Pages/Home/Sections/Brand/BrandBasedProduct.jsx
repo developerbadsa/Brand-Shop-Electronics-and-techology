@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import ProductDetails from "./ProductDetails";
 
 
 
@@ -21,18 +22,17 @@ const BrandBasedProduct = () => {
 
 
 
-
-  console.log(product);
-
   return (
     <div>
       <div className="py-12 text-center font-bold text-5xl">slider</div>
 
-      {
+      <div className="grid grid-cols-2 gap-7">
+        {
 
-        product.map((SingleProduct=> <>SingleProduct.brand</>))
+          product.map((SingleProduct => <ProductDetails key={SingleProduct._id} SingleProduct={SingleProduct}></ProductDetails>))
 
-      }
+        }
+      </div>
 
 
     </div>
