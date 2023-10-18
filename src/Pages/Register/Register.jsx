@@ -1,13 +1,81 @@
+import { useContext } from "react";
+import Swal from "sweetalert2";
+import { userPovider } from "../../AuthProvider/AuthProvider";
+import { updateProfile } from "firebase/auth";
+import { Auth } from "../../Firebase/Firebase.config";
 
 
 const Register = () => {
+const {createUser}  = useContext(userPovider)
+
+
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        const fullName = e.target.last_name.value ;
+        const profile_pic = e.target.profile_pic.value;
+        const email = e.target.email.value;
+        const password = e.target.password.value;
+
+
+        console.log(fullName, profile_pic);
+
+
+        if (password.length < 6) {
+              Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Password must need upto 6 character'
+              })
+              return
+        } else if (!/[A-Z]/.test(password)) {
+              Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Password must need to at least one capital letter'
+              })
+              return
+        } else if (!/[\W_]/.test(password)) {
+              Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Password must need to at least one special character'
+              })
+              return
+        } else {
+              createUser(email, password)
+                    .then(() => {
+                          updateProfile(Auth.currentUser, {
+                                displayName: fullName, photoURL:  profile_pic
+                              })
+
+                          Swal.fire(
+                                'Congratulations!',
+                                'Successfuly you have created a user!',
+                                'success'
+                          )
+
+                    })
+                    .catch(err => {
+                          Swal.fire({
+                                icon: 'error',
+                                title: 'Oops...',
+                                text: err.message
+                          })
+                    })
+        }
+
+  }
+
+
+
+
     return (
-        <form className="max-w-6xl mx-auto">
+        <form onSubmit={handleSubmit} className="max-w-6xl mx-auto">
             <h2 className="text-5xl font-bold mb-10 text-center mt-16" >Register Now</h2>
             <div className="relative z-0 w-full mb-6 group">
                 <input
                     type="email"
-                    name="floating_email"
+                    name="email"
                     id="floating_email"
                     className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                     placeholder=" "
@@ -23,7 +91,7 @@ const Register = () => {
             <div className="relative z-0 w-full mb-6 group">
                 <input
                     type="password"
-                    name="floating_password"
+                    name="password"
                     id="floating_password"
                     className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                     placeholder=" "
@@ -39,11 +107,10 @@ const Register = () => {
             <div className="relative z-0 w-full mb-6 group">
                 <input
                     type="password"
-                    name="repeat_password"
+                    name="password1"
                     id="floating_repeat_password"
                     className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                     placeholder=" "
-                    required=""
                 />
                 <label
                     htmlFor="floating_repeat_password"
@@ -56,7 +123,7 @@ const Register = () => {
                 <div className="relative z-0 w-full mb-6 group">
                     <input
                         type="text"
-                        name="floating_first_name"
+                        name="first_name"
                         id="floating_first_name"
                         className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                         placeholder=" "
@@ -72,7 +139,7 @@ const Register = () => {
                 <div className="relative z-0 w-full mb-6 group">
                     <input
                         type="text"
-                        name="floating_last_name"
+                        name="last_name"
                         id="floating_last_name"
                         className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                         placeholder=" "
@@ -89,9 +156,8 @@ const Register = () => {
             <div className="grid md:grid-cols-2 md:gap-6">
                 <div className="relative z-0 w-full mb-6 group">
                     <input
-                        type="tel"
-                        pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
-                        name="floating_phone"
+                        type="phone"
+                        name="phone"
                         id="floating_phone"
                         className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                         placeholder=" "
@@ -107,7 +173,7 @@ const Register = () => {
                 <div className="relative z-0 w-full mb-6 group">
                     <input
                         type="text"
-                        name="photourl"
+                        name="profile_pic"
                         className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                         placeholder=" "
                         required=""

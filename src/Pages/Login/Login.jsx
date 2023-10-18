@@ -1,10 +1,44 @@
-import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { userPovider } from "../../AuthProvider/AuthProvider";
+import Swal from "sweetalert2";
 
 
 const Login = () => {
 
+    const {loginEmail} = useContext(userPovider)
+    const navigatePage = useNavigate();
+
+
+
     const handleLogin = (e)=>{
-        console.log(e);
+        e.preventDefault()
+        const email = e.target.email.value
+        const password = e.target.password.value
+        const isCheacked = e.target.remember
+
+
+        loginEmail(email, password)
+        .then(() => {
+
+            navigatePage('/');
+
+            Swal.fire(
+                  'Congratulations!',
+                  'Successfuly logged in with Email and Password',
+                  'success'
+            )
+
+      })
+      .catch(err => {
+
+
+            Swal.fire({
+                  icon: 'error',
+                  title: 'Oops...',
+                  text: err.message
+            });
+      })
 
     }
 
@@ -31,7 +65,7 @@ const Login = () => {
                         </label>
                         <input
                             type="email"
-                            id="email"
+                            name="email"
                             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             placeholder="example@gmail.com"
                             required=""
@@ -46,7 +80,7 @@ const Login = () => {
                         </label>
                         <input
                             type="password"
-                            id="password"
+                            name="password"
                             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             required=""
                             placeholder="*&***"
@@ -55,9 +89,8 @@ const Login = () => {
                     <div className="flex items-start mb-6">
                         <div className="flex items-center h-5">
                             <input
-                                id="remember"
+                                name="remember"
                                 type="checkbox"
-                                defaultValue=""
                                 className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800"
                                 required=""
                             />
