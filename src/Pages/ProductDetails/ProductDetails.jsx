@@ -1,10 +1,26 @@
-import { Link } from "react-router-dom";
-import StarRating from "../../../../Components/Rating/Rating";
+import { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
+import StarRating from "../../Components/Rating/Rating";
 
 
-const ProductDetails = ({ SingleProduct }) => {
+const ProductCardDetails = () => {
+    const {id} = useParams()
 
-    const { Rating, brand, description, image, name, price, type , _id} = SingleProduct;
+    const [productCardDetails, setProductCardDetails] = useState([])
+
+    useEffect(()=>{
+
+        fetch(`http://localhost:5003/productCardDetails/${id}`)
+        .then(res=>res.json())
+        .then(data=>setProductCardDetails(data))
+
+
+    },[])
+
+
+
+
+    const { Rating, brand, description, image, name, price, type , _id} = productCardDetails;
 
 
     return (
@@ -25,12 +41,11 @@ const ProductDetails = ({ SingleProduct }) => {
                 </div>
 
                 <div className="flex gap-8 justify-end">
-                    <button className="btn bg-blue-600 hover:bg-amber-700 text-slate-100">Update</button>
-                    <Link to={`/productCardDetails/${_id}`}><button className="btn bg-amber-700 hover:bg-blue-700 text-stone-100">View Details</button></Link>
+                    <button className="btn bg-blue-600 hover:bg-amber-700 text-slate-100">Add To Card</button>
                 </div>
             </div>
         </div>
     );
 };
 
-export default ProductDetails;
+export default ProductCardDetails;

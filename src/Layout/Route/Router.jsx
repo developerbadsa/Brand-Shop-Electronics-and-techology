@@ -6,6 +6,7 @@ import AddProduct from "../../Pages/AddProduct/AddProduct";
 import MyCard from "../../Pages/MyCard/MyCard";
 import Register from "../../Pages/Register/Register";
 import BrandBasedProduct from "../../Pages/Home/Sections/Brand/BrandBasedProduct";
+import ProductCardDetails from "../../Pages/ProductDetails/ProductDetails";
 
 
 const Router = createBrowserRouter([
@@ -40,7 +41,11 @@ const Router = createBrowserRouter([
             {
                 path: "/brand/:brand_name",
                 element: <BrandBasedProduct></BrandBasedProduct>
-              }
+            },
+            {
+                path: '/productCardDetails/:id',
+                element:<ProductCardDetails></ProductCardDetails>
+            }
         ]
     }
 ])
