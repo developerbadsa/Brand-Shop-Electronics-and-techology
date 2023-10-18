@@ -25,8 +25,6 @@ const Brand = () => {
                     brands.map((brand) => {
 
                         const { _id, brandName, brandImage } = brand;
-
-                        console.log(brand);
                         return (
                             <Link to={`brand/${_id}`} key={_id} className="card w-96 p-6 bg-base-100 shadow-xl">
                                 <div className="card-body mx-auto">

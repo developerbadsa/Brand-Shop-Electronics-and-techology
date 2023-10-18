@@ -2,13 +2,26 @@ import { Link } from "react-router-dom";
 
 
 const Login = () => {
+
+    const handleLogin = (e)=>{
+        console.log(e);
+
+    }
+
+
+
+
+
     return (
         <div className="flex align-middle items-center">
           
 
             <div className="flex-1">
             <h2 className="text-5xl font-bold mb-10">Please Log in Now</h2>
-                <form >
+
+
+
+                <form onSubmit={handleLogin}>
                     <div className="mb-6">
                         <label
                             htmlFor="email"
