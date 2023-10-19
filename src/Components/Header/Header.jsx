@@ -9,8 +9,6 @@ const Header = () => {
 
     const { logOut, user } = useContext(userPovider)
 
-    console.log(user?.displayName);
-
     const handleLogout = () => {
         logOut()
             .then(() => {

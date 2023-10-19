@@ -5,48 +5,50 @@ import { Auth } from '../Firebase/Firebase.config';
 
 export const userPovider = createContext(null)
 
-const AuthProvider = ({children}) => {
+const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null)
-    const [loading, serLoading] = useState(true)
+    const [loading, setLoading] = useState(true)
 
-    const createUser = (email, password)=>{
+    const createUser = (email, password) => {
 
-
-       return createUserWithEmailAndPassword(Auth, email, password)
+        setLoading(true)
+        return createUserWithEmailAndPassword(Auth, email, password)
     }
 
 
 
-    const loginEmail = (email, password)=>{
+    const loginEmail = (email, password) => {
 
 
         return signInWithEmailAndPassword(Auth, email, password)
 
-     }
+    }
 
 
 
 
 
-     useEffect(() => {
- 
-         const unSubscribe = onAuthStateChanged(Auth, currentUser => {
-             setUser(currentUser)
-         });
-         return unSubscribe
-     }, [])
+    useEffect(() => {
+
+        const unSubscribe = onAuthStateChanged(Auth, currentUser => {
+            setUser(currentUser)
+            setLoading(false)
+        });
+        return unSubscribe
+    }, [])
 
 
-     const logOut = () =>{
+    const logOut = () => {
+        setLoading(true)
+        return signOut(Auth)
+    }
 
-       return signOut(Auth)
-     }
+    const googleProvider = new GoogleAuthProvider();
 
-     const googleProvider = new GoogleAuthProvider();
-
-     const googleSign = ()=>{
+    const googleSign = () => {
+        setLoading(true)
         return signInWithPopup(Auth, googleProvider)
-     }
+    }
 
 
     const userInfo = {
@@ -54,10 +56,10 @@ const AuthProvider = ({children}) => {
     }
 
     console.log(user);
-    
+
     return (
         <userPovider.Provider value={userInfo}>
-           {children}
+            {children}
         </userPovider.Provider>
     );
 };
