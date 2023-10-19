@@ -11,12 +11,14 @@ import AboutUs from "../../Pages/AboutUs/About.";
 import LoggedInPrivate from "./LoggedInPrivate";
 import LoggedOutPrivate from "./LoggedOutPrivate";
 import Contact from "../../Pages/Contact/Contact";
+import ErrorPage from "../../Pages/ErrorPage/ErrorPage";
 
 
 const Router = createBrowserRouter([
     {
         path: '/',
         element: <MainLayout></MainLayout>,
+        errorElement: <ErrorPage></ErrorPage>,
         children: [
             {
                 path: '/',
