@@ -12,6 +12,7 @@ import LoggedInPrivate from "./LoggedInPrivate";
 import LoggedOutPrivate from "./LoggedOutPrivate";
 import Contact from "../../Pages/Contact/Contact";
 import ErrorPage from "../../Pages/ErrorPage/ErrorPage";
+import UpdatesProduct from "../../Pages/ProductDetails/UpdatesProduct";
 
 
 const Router = createBrowserRouter([
@@ -46,7 +47,15 @@ const Router = createBrowserRouter([
                 loader: ()=> fetch('http://localhost:5003/cart')
             },
             {
-                path: 'addproduct',
+                path: '/cart/:id',
+                element: <LoggedInPrivate><UpdatesProduct></UpdatesProduct></LoggedInPrivate>,
+                loader: ({params})=> {
+                    console.log(params.id);
+                   return fetch(`http://localhost:5003/cart/${params.id}`)
+                }
+            },
+            {
+                path: '/addproduct',
                 element:<LoggedInPrivate><AddProduct></AddProduct></LoggedInPrivate>
             },
             {
