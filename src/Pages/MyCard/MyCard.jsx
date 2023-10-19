@@ -9,7 +9,7 @@ const MyCard = () => {
 
     const handleDelete = (id) => {
         console.log(id);
-        fetch(`http://localhost:5003/cart/${id}`, {
+        fetch(`https://b8a10-brandshop-server-side-developerbadsa.vercel.app/cart/${id}`, {
             method: "DELETE"
         })
             .then((res) => res.json())

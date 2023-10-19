@@ -23,7 +23,7 @@ const AddProduct = () => {
         const ProductData = {name, image, brand, type, price, description, Rating}
 
 
-        fetch('http://localhost:5003/product', {
+        fetch('https://b8a10-brandshop-server-side-developerbadsa.vercel.app/product', {
 
         method: "POST",
         headers: {
