@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { FaUserCircle } from "react-icons/fa";
 import { useContext } from "react";
 import { userPovider } from "../../AuthProvider/AuthProvider";
@@ -8,6 +8,8 @@ import Swal from "sweetalert2";
 const Header = () => {
 
     const { logOut, user } = useContext(userPovider)
+
+    console.log(user?.displayName);
 
     const handleLogout = () => {
         logOut()
@@ -103,7 +105,7 @@ const Header = () => {
 
 
     return (
-        <nav className="justify-between px-4 py-4 mx-auto bg-transparent border-b navbar max-w-7xl lg:px-0">
+        <nav className="container justify-between px-4 py-4 mx-auto bg-transparent border-b navbar lg:px-0">
             <div className="navbar-start">
                 <div className="dropdown">
                     <label tabIndex={0} className="btn bg-slate-300 lg:hidden">
@@ -131,19 +133,35 @@ const Header = () => {
                     </ul>
                 </div>
             </div>
-            <div className="navbar-end">
-                <> <div className="hidden px-4 ml-4 font-bold text-white lg:inline-block">name</div><div className="dropdown dropdown-end">
+            <div className=" navbar-end">
+                {
+                    user ? <> <div className="hidden px-4 ml-4 font-bold text-slate-500 lg:inline-block">{user?.displayName ? user.displayName : ''}</div>
+                     <Link to='/addproduct'><button className="mx-3 text-white bg-orange-600 hover:text-black btn btn-sm">Add Product</button></Link>
+                    
+                    <div className="dropdown dropdown-end">
 
-
-                    <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-                        <div className="text-3xl ">
+                       
+                        <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+                            {
+                                user?.photoURL ? <div className="text-3xl btn btn-ghost btn-circle avatar">
+                                    <img className="max-w-[100px]" src={user.photoURL} alt="" />
+                                </div>
+                                    : <div className="text-3xl ">
+                                        <FaUserCircle></FaUserCircle>
+                                    </div>
+                            }
+                        </label>
+                        <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
+                            <li><button onClick={handleLogout}>Logout</button></li>
+                        </ul>
+                    </div>
+                    </> : <label className="btn btn-ghost btn-circle avatar disabled">
+                        <div className="text-3xl">
                             <FaUserCircle></FaUserCircle>
                         </div>
                     </label>
-                    <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
-                        <li><button onClick={handleLogout}>Logout</button></li>
-                    </ul>
-                </div> </>
+
+                }
             </div>
         </nav>
     );

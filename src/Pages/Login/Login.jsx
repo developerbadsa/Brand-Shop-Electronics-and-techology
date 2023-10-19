@@ -2,16 +2,17 @@ import { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { userPovider } from "../../AuthProvider/AuthProvider";
 import Swal from "sweetalert2";
+import { FaGoogle } from "react-icons/fa";
 
 
 const Login = () => {
 
-    const {loginEmail} = useContext(userPovider)
+    const { loginEmail, googleSign } = useContext(userPovider)
     const navigatePage = useNavigate();
 
 
 
-    const handleLogin = (e)=>{
+    const handleLogin = (e) => {
         e.preventDefault()
         const email = e.target.email.value
         const password = e.target.password.value
@@ -19,27 +20,39 @@ const Login = () => {
 
 
         loginEmail(email, password)
-        .then(() => {
+            .then(() => {
 
+                navigatePage('/');
+
+                Swal.fire(
+                    'Congratulations!',
+                    'Successfuly logged in with Email and Password',
+                    'success'
+                )
+
+            })
+            .catch(err => {
+
+
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: err.message
+                });
+            })
+
+    }
+
+    const handleGoogleSignIn =()=>{
+
+        googleSign()
+        .then(res=>{
             navigatePage('/');
-
-            Swal.fire(
-                  'Congratulations!',
-                  'Successfuly logged in with Email and Password',
-                  'success'
-            )
-
-      })
-      .catch(err => {
-
-
             Swal.fire({
-                  icon: 'error',
-                  title: 'Oops...',
-                  text: err.message
-            });
-      })
-
+                icon: 'success',
+                text: 'You have successfully logged in with Google'
+          });
+        })
     }
 
 
@@ -47,11 +60,11 @@ const Login = () => {
 
 
     return (
-        <div className="flex align-middle items-center">
-          
+        <div className="flex items-center align-middle">
+
 
             <div className="flex-1">
-            <h2 className="text-5xl font-bold mb-10">Please Log in Now</h2>
+                <h2 className="mb-10 text-5xl font-bold">Please Log in Now</h2>
 
 
 
@@ -110,7 +123,10 @@ const Login = () => {
                     </button>
                     <span className="px-4">If You Dont have account, Please <Link to='/register' className="text-blue-600 underline"> Register Here</Link></span>
                 </form>
-              
+                <div className="flex justify-center gap-4 my-8">
+                    <button onClick={handleGoogleSignIn} className="text-2xl btn"> Sign in With Google Now <FaGoogle></FaGoogle></button>
+                </div>
+
             </div>
             <div className="flex-1">
                 <img src="https://i.ibb.co/pPkZwBB/10-1.png" alt="" />
