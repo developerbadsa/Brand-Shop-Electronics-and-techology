@@ -7,7 +7,7 @@ import Swal from "sweetalert2";
 
 const Header = () => {
 
-    const {logOut}  = useContext(userPovider)
+    const {logOut, user}  = useContext(userPovider)
 
     const handleLogout = ()=>{
         logOut()
@@ -54,6 +54,18 @@ const Header = () => {
                     Register
                 </NavLink>
             </li>
+            {
+             user &&  <li className="">
+                <NavLink
+                    to="/cart"
+                    className={({ isActive, isPending }) =>
+                        isPending ? "text-slate-100" : isActive ? "text-blue-600 bg-slate-300 p-1 flex rounded-lg" : "text-slate-500 p-1 flex"
+                    }
+                >
+                    My Cart
+                </NavLink>
+             </li>
+            }
 
 
         </>

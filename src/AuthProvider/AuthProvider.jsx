@@ -7,6 +7,7 @@ export const userPovider = createContext(null)
 
 const AuthProvider = ({children}) => {
     const [user, setUser] = useState(null)
+    const [loading, serLoading] = useState(true)
 
     const createUser = (email, password)=>{
 
@@ -45,7 +46,7 @@ const AuthProvider = ({children}) => {
 
 
     const userInfo = {
-        createUser, loginEmail, user, logOut, 
+        createUser, loginEmail, user, logOut, loading
     }
 
     console.log(user);

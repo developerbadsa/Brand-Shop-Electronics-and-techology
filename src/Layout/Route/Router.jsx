@@ -8,6 +8,8 @@ import Register from "../../Pages/Register/Register";
 import BrandBasedProduct from "../../Pages/Home/Sections/Brand/BrandBasedProduct";
 import ProductCardDetails from "../../Pages/ProductDetails/ProductDetails";
 import AboutUs from "../../Pages/AboutUs/About.";
+import LoggedInPrivate from "./LoggedInPrivate";
+import LoggedOutPrivate from "./LoggedOutPrivate";
 
 
 const Router = createBrowserRouter([
@@ -21,11 +23,11 @@ const Router = createBrowserRouter([
             },
             {
                 path: '/login',
-                element: <Login></Login>
+                element: <LoggedOutPrivate><Login></Login></LoggedOutPrivate>
             },
             {
                 path: '/register',
-                element: <Register></Register>
+                element: <LoggedOutPrivate><Register></Register></LoggedOutPrivate>
             },
             {
                 path: '/about',
@@ -33,12 +35,12 @@ const Router = createBrowserRouter([
             },
             {
                 path: '/cart',
-                element: <MyCard></MyCard>,
+                element: <LoggedInPrivate><MyCard></MyCard></LoggedInPrivate>,
                 loader: ()=> fetch('http://localhost:5003/cart')
             },
             {
                 path: 'addproduct',
-                element:<AddProduct></AddProduct>
+                element:<LoggedInPrivate><AddProduct></AddProduct></LoggedInPrivate>
             },
             {
                 path: "/brand/:brand_name",
@@ -46,7 +48,7 @@ const Router = createBrowserRouter([
             },
             {
                 path: '/productCardDetails/:id',
-                element:<ProductCardDetails></ProductCardDetails>
+                element:<LoggedInPrivate><ProductCardDetails></ProductCardDetails></LoggedInPrivate>
             }
         ]
     }
