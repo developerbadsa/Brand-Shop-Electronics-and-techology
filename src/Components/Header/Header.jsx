@@ -133,8 +133,8 @@ const Header = () => {
             </div>
             <div className=" navbar-end">
                 {
-                    user ? <> <div className="hidden px-4 ml-4 font-bold text-slate-500 lg:inline-block">{user?.displayName ? user.displayName : ''}</div>
-                     <Link to='/addproduct'><button className="mx-3 text-white bg-orange-600 hover:text-black btn btn-sm">Add Product</button></Link>
+                    user ? <> <div className="hidden px-4 ml-4 font-bold text-slate-500 xl:inline-block">{user?.displayName ? user.displayName : ''}</div>
+                     <Link to='/addproduct'><button className="mx-3 text-xs text-white bg-orange-600 hover:text-black btn btn-sm md:text-base">Add Product</button></Link>
                     
                     <div className="dropdown dropdown-end">
 
