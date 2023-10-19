@@ -1,18 +1,20 @@
-import { useContext } from "react";
-import { Navigate } from "react-router-dom";
+import { useContext, useEffect } from "react";
+import {useNavigate } from "react-router-dom";
 import { userPovider } from "../../AuthProvider/AuthProvider";
 
 
 const LoggedInPrivate = ({children}) => {
 
-    const {user} = useContext(userPovider)
+    const { user } = useContext(userPovider);
+    const navigate = useNavigate();
 
-
-    if (!user) {
-        return <Navigate to="/landing" replace />;
-      }
+    useEffect(() => {
+        if (!user) {
+          navigate('/login');
+        }
+      }, [user, navigate]);
     
       return children;
-};
+    };
 
 export default LoggedInPrivate;

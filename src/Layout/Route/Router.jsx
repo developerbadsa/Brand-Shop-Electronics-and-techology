@@ -10,6 +10,7 @@ import ProductCardDetails from "../../Pages/ProductDetails/ProductDetails";
 import AboutUs from "../../Pages/AboutUs/About.";
 import LoggedInPrivate from "./LoggedInPrivate";
 import LoggedOutPrivate from "./LoggedOutPrivate";
+import Contact from "../../Pages/Contact/Contact";
 
 
 const Router = createBrowserRouter([
@@ -32,6 +33,10 @@ const Router = createBrowserRouter([
             {
                 path: '/about',
                 element: <AboutUs></AboutUs>
+            },
+            {
+                path: '/contact',
+                element: <Contact></Contact>
             },
             {
                 path: '/cart',

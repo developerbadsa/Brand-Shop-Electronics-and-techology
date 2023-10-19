@@ -7,16 +7,16 @@ import Swal from "sweetalert2";
 
 const Header = () => {
 
-    const {logOut, user}  = useContext(userPovider)
+    const { logOut, user } = useContext(userPovider)
 
-    const handleLogout = ()=>{
+    const handleLogout = () => {
         logOut()
-        .then(()=>{
-            Swal.fire(
-                'Logged Out!',
-                'success'
+            .then(() => {
+                Swal.fire(
+                    'Logged Out!',
+                    'success'
                 )
-        })
+            })
     }
 
 
@@ -34,38 +34,67 @@ const Header = () => {
                     Home
                 </NavLink>
             </li>
-            <li className="">
-                <NavLink
-                    to="/login"
-                    className={({ isActive, isPending }) =>
-                        isPending ? "text-slate-100" : isActive ? "text-blue-600 bg-slate-300 p-1 flex rounded-lg" : "text-slate-500 p-1 flex"
-                    }
-                >
-                    Login
-                </NavLink>
-            </li>
-            <li className="">
-                <NavLink
-                    to="/register"
-                    className={({ isActive, isPending }) =>
-                        isPending ? "text-slate-100" : isActive ? "text-blue-600 bg-slate-300 p-1 flex rounded-lg" : "text-slate-500 p-1 flex"
-                    }
-                >
-                    Register
-                </NavLink>
-            </li>
             {
-             user &&  <li className="">
+
+
+                !user && <>
+
+                    <li className="">
+                        <NavLink
+                            to="/login"
+                            className={({ isActive, isPending }) =>
+                                isPending ? "text-slate-100" : isActive ? "text-blue-600 bg-slate-300 p-1 flex rounded-lg" : "text-slate-500 p-1 flex"
+                            }
+                        >
+                            Login
+                        </NavLink>
+                    </li>
+                    <li className="">
+                        <NavLink
+                            to="/register"
+                            className={({ isActive, isPending }) =>
+                                isPending ? "text-slate-100" : isActive ? "text-blue-600 bg-slate-300 p-1 flex rounded-lg" : "text-slate-500 p-1 flex"
+                            }
+                        >
+                            Register
+                        </NavLink>
+                    </li>
+                </>
+
+
+            }
+            {
+                user && <li className="">
+                    <NavLink
+                        to="/cart"
+                        className={({ isActive, isPending }) =>
+                            isPending ? "text-slate-100" : isActive ? "text-blue-600 bg-slate-300 p-1 flex rounded-lg" : "text-slate-500 p-1 flex"
+                        }
+                    >
+                        My Cart
+                    </NavLink>
+                </li>
+            }
+            <li className="">
                 <NavLink
-                    to="/cart"
+                    to="/about"
                     className={({ isActive, isPending }) =>
-                        isPending ? "text-slate-100" : isActive ? "text-blue-600 bg-slate-300 p-1 flex rounded-lg" : "text-slate-500 p-1 flex"
+                        isPending ? "text-slate-100" : isActive ? "text-blue-600 bg-slate-200 p-1 flex rounded-lg" : "text-slate-500 p-1 flex"
                     }
                 >
-                    My Cart
+                    About
                 </NavLink>
-             </li>
-            }
+            </li>
+            <li className="">
+                <NavLink
+                    to="/contact"
+                    className={({ isActive, isPending }) =>
+                        isPending ? "text-slate-100" : isActive ? "text-blue-600 bg-slate-200 p-1 flex rounded-lg" : "text-slate-500 p-1 flex"
+                    }
+                >
+                    Contact
+                </NavLink>
+            </li>
 
 
         </>
