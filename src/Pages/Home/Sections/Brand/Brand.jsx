@@ -19,8 +19,8 @@ const Brand = () => {
     return (
         <div>
 
-                <h2 className="text-center font-bold text-4xl my-4">Our Brands</h2>
-            <div className="grid grid-cols-3 gap-6 ">
+                <h2 className="my-4 text-4xl font-bold text-center">Our Brands</h2>
+            <div className="grid grid-cols-1 gap-6 p-4 md:grid-cols-2 md:gap-24">
                 {
                     brands.map((brand) => {
 
@@ -29,9 +29,9 @@ const Brand = () => {
                         const brand_name_lowecase = brandName
                         
                         return (
-                            <Link to={`brand/${brand_name_lowecase}`} key={_id} className="card w-96 p-6 bg-base-100 shadow-xl">
-                                <div className="card-body mx-auto">
-                                    <h2 className="card-title font-semibold text-slate-600 text-3xl ">{brandName}</h2>
+                            <Link to={`brand/${brand_name_lowecase}`} key={_id} className="p-6 shadow-xl card w-96 bg-base-100">
+                                <div className="mx-auto card-body">
+                                    <h2 className="text-3xl font-semibold card-title text-slate-600 ">{brandName}</h2>
                                 </div>
                                 <figure><img className="max-h-52" src={brandImage} alt={brandName} /></figure>
                             </Link>

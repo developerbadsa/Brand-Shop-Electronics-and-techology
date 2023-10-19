@@ -4,7 +4,7 @@ import ContactForm from '../../Components/Contact/Contact';
 
 const AboutUs = () => {
       return (
-            <div className='container mx-auto'>
+            <div className='container px-6 mx-auto'>
                   <div className='my-6'>
                         <h2 className='py-4 mt-8 text-2xl font-bold text-center text-slate-700 lg:py-6'>Welcome to TechPro Electronics - Technology & Electronics</h2>
                         <p className='my-5 text-base text-center text-slate-400'>

@@ -12,7 +12,6 @@ const Home = () => {
             <div className='mt-24'>
                 <AboutUs ></AboutUs>
             </div>
-            <ContactForm></ContactForm>
         </div>
     );
 };
