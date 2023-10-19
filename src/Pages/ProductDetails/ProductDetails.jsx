@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import StarRating from "../../Components/Rating/Rating";
+import Swal from "sweetalert2";
 
 
 const ProductCardDetails = () => {
@@ -16,6 +17,32 @@ const ProductCardDetails = () => {
 
 
     },[])
+
+
+    const handleAddToCard = ()=>{
+        fetch("http://localhost:5003/cart", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(productCardDetails),
+    })
+      .then((res) => res.json())
+      .then(() => {
+        Swal.fire(
+            'Good job!',
+            'This Product added to cart',
+            'success'
+            )
+      })
+      .catch(()=>{
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Something went wrong!'
+            })
+      })
+    }
 
 
 
@@ -41,7 +68,7 @@ const ProductCardDetails = () => {
                 </div>
 
                 <div className="flex gap-8 justify-end">
-                    <button className="btn bg-blue-600 hover:bg-amber-700 text-slate-100">Add To Card</button>
+                    <button onClick={handleAddToCard} className="btn bg-blue-600 hover:bg-amber-700 text-slate-100">Add To Card</button>
                 </div>
             </div>
         </div>

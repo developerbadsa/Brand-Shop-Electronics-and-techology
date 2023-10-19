@@ -7,6 +7,7 @@ import MyCard from "../../Pages/MyCard/MyCard";
 import Register from "../../Pages/Register/Register";
 import BrandBasedProduct from "../../Pages/Home/Sections/Brand/BrandBasedProduct";
 import ProductCardDetails from "../../Pages/ProductDetails/ProductDetails";
+import AboutUs from "../../Pages/AboutUs/About.";
 
 
 const Router = createBrowserRouter([
@@ -27,12 +28,13 @@ const Router = createBrowserRouter([
                 element: <Register></Register>
             },
             {
-                path: '/cart',
-                element: <Login></Login>
+                path: '/about',
+                element: <AboutUs></AboutUs>
             },
             {
                 path: '/cart',
-                element: <MyCard></MyCard>
+                element: <MyCard></MyCard>,
+                loader: ()=> fetch('http://localhost:5003/cart')
             },
             {
                 path: 'addproduct',
