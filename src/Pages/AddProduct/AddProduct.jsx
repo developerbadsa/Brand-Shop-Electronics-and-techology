@@ -23,7 +23,7 @@ const AddProduct = () => {
         const ProductData = {name, image, brand, type, price, description, Rating}
 
 
-        fetch('https://b8a10-brandshop-server-side-developerbadsa.vercel.app/product', {
+        fetch('http://localhost:5003/cart', {
 
         method: "POST",
         headers: {
@@ -56,8 +56,8 @@ const AddProduct = () => {
 
 
     return (
-        <div className="max-w-md mx-auto bg-white rounded p-6 shadow-lg">
-            <h2 className="text-2xl font-semibold mb-4">Add Product</h2>
+        <div className="max-w-md p-6 mx-auto bg-white rounded shadow-lg">
+            <h2 className="mb-4 text-2xl font-semibold">Add Product</h2>
             <form onSubmit={handleAddProduct}>
                 <div className="mb-4">
                     <label
@@ -71,7 +71,7 @@ const AddProduct = () => {
                         id="image"
                         name="image"
                         accept="image/*"
-                        className="mt-1 p-2 border border-gray-300 rounded-md w-full"
+                        className="w-full p-2 mt-1 border border-gray-300 rounded-md"
                     />
                 </div>
                 <div className="mb-4">
@@ -82,7 +82,7 @@ const AddProduct = () => {
                         type="text"
                         id="name"
                         name="name"
-                        className="mt-1 p-2 border border-gray-300 rounded-md w-full"
+                        className="w-full p-2 mt-1 border border-gray-300 rounded-md"
                     />
                 </div>
                 <div className="mb-4">
@@ -92,7 +92,7 @@ const AddProduct = () => {
                     <select
                         id="brand"
                         name="brand"
-                        className="mt-1 p-2 border border-gray-300 rounded-md w-full"
+                        className="w-full p-2 mt-1 border border-gray-300 rounded-md"
                     >
                         <option value="apple">Apple</option>
                         <option value="samsung">Samsung</option>
@@ -109,7 +109,7 @@ const AddProduct = () => {
                     <select
                         id="type"
                         name="type"
-                        className="mt-1 p-2 border border-gray-300 rounded-md w-full"
+                        className="w-full p-2 mt-1 border border-gray-300 rounded-md"
                     >
                         <option value="phone">Phone</option>
                         <option value="computer">Computer</option>
@@ -128,7 +128,7 @@ const AddProduct = () => {
                         type="number"
                         id="price"
                         name="price"
-                        className="mt-1 p-2 border border-gray-300 rounded-md w-full"
+                        className="w-full p-2 mt-1 border border-gray-300 rounded-md"
                     />
                 </div>
                 <div className="mb-4">
@@ -141,7 +141,7 @@ const AddProduct = () => {
                     <textarea
                         id="description"
                         name="description"
-                        className="mt-1 p-2 border border-gray-300 rounded-md w-full"
+                        className="w-full p-2 mt-1 border border-gray-300 rounded-md"
                         defaultValue={""}
                     />
                 </div>
@@ -152,7 +152,7 @@ const AddProduct = () => {
                     >
                         Rating
                     </label>
-                    <div className="mt-1 flex items-center space-x-2">
+                    <div className="flex items-center mt-1 space-x-2">
             {Array.from({ length: 5 }).map((_, index) => (
               <label key={index} className="cursor-pointer">
                 <input
@@ -177,7 +177,7 @@ const AddProduct = () => {
                 <div className="mb-4">
                     <button
                         type="submit"
-                        className="bg-blue-500 text-white font-semibold px-4 py-2 rounded hover:bg-blue-600"
+                        className="px-4 py-2 font-semibold text-white bg-blue-500 rounded hover:bg-blue-600"
                     >
                         Add Product
                     </button>

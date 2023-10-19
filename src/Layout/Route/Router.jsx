@@ -43,7 +43,7 @@ const Router = createBrowserRouter([
             {
                 path: '/cart',
                 element: <LoggedInPrivate><MyCard></MyCard></LoggedInPrivate>,
-                loader: ()=> fetch('https://b8a10-brandshop-server-side-developerbadsa.vercel.app/cart')
+                loader: ()=> fetch('http://localhost:5003/cart')
             },
             {
                 path: 'addproduct',

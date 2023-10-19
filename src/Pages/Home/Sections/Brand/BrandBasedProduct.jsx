@@ -23,7 +23,7 @@ const BrandBasedProduct = () => {
   console.log(productLength);
 
   useEffect(() => {
-    fetch(`https://b8a10-brandshop-server-side-developerbadsa.vercel.app/product/${brand_name}`)
+    fetch(`http://localhost:5003/product/${brand_name}`)
       .then(data => data.json())
       .then(res => setProduct(res))
       .catch()

@@ -1,24 +1,33 @@
 import { FaTrash } from "react-icons/fa";
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import StarRating from "../../Components/Rating/Rating";
 import { useState } from "react";
+import Swal from "sweetalert2";
 
 const MyCard = () => {
     const data = useLoaderData();
     const [newData, SetNewData] = useState(data);
+    const isEmpty = newData.length;
+    
 
-    const handleDelete = (id) => {
-        console.log(id);
-        fetch(`https://b8a10-brandshop-server-side-developerbadsa.vercel.app/cart/${id}`, {
+    const handleDelete = (_id) => {
+
+        const URL = `http://localhost:5003/cart/${_id}`;
+        fetch(URL, {
             method: "DELETE"
         })
-            .then((res) => res.json())
-            .then((data) => {
-                console.log(data);
-            })
-            .catch((error) => {
-                console.error("Error deleting item:", error);
-            });
+        .then(res=>res.json())
+        .then(({deletedCount})=>{
+
+            if(deletedCount){
+                const updatedData = newData.filter(item => item._id !== _id);
+                SetNewData(updatedData)
+                Swal.fire(
+                    'Deleted Item',
+                    'success'
+                    )
+            }
+        })
     }
 
     return (
@@ -71,6 +80,7 @@ const MyCard = () => {
                         }
                     </tbody>
                 </table>
+               {!isEmpty && <div className="my-4 mr-32 text-xl font-bold text-center text-red-600">Currently No Data to Display To Add Data <Link to='/addproduct' className="mx-4 italic text-blue-600 underline">Click Here</Link></div>}
             </div>
         </div>
     );
