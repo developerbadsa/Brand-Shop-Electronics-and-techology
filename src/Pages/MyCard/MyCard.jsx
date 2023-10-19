@@ -3,13 +3,9 @@ import { useLoaderData } from "react-router-dom";
 import StarRating from "../../Components/Rating/Rating";
 import { useState } from "react";
 
-
 const MyCard = () => {
     const data = useLoaderData();
-
-    const [newData, SetNewData] = useState(data)
-
-
+    const [newData, SetNewData] = useState(data);
 
     const handleDelete = (id) => {
         console.log(id);
@@ -19,8 +15,6 @@ const MyCard = () => {
             .then((res) => res.json())
             .then((data) => {
                 console.log(data);
-                // After deleting the item, update the state
-                //SetNewData(newData.filter(item => item._id !== id));
             })
             .catch((error) => {
                 console.error("Error deleting item:", error);
@@ -29,26 +23,26 @@ const MyCard = () => {
 
     return (
         <div className="px-5 mx-auto my-12 overflow-x-auto">
-            <table className="table">
-                {/* head */}
-                <thead>
-                    <tr className="text-xl">
-                        <th>Product Name</th>
-                        <th>Brand & Rating</th>
-                        <th>Price</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {
-                        newData.map((singleData => {
-
-                            const { Rating, brand, image, name, price, type, _id } = singleData;
-
-
-                            return (
-                                <tr key={_id}>
-                                        <td>
+            <div> 
+                <h3 className="my-6 text-xl font-bold text-center">Your Added Card</h3>
+            </div>
+            <div className="w-full ">
+                <table className="w-full table-auto">
+                    <thead>
+                        <tr className="text-xs md:text-xl">
+                            <th className="w-1/3 sm:w-1/4 lg:w-1/5">Product Name</th>
+                            <th className="w-1/3 sm:w-1/4 lg:w-1/5">Brand & Rating</th>
+                            <th className="w-1/6 sm:w-1/4 lg:w-1/5">Price</th>
+                            <th className="w-1/6 sm:w-1/4 lg:w-1/5"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {
+                            newData.map((singleData => {
+                                const { Rating, brand, image, name, price, type, _id } = singleData;
+                                return (
+                                    <tr key={_id} className="text-center border">
+                                        <td className="w-1/3 text-center sm:w-1/4 lg:w-1/5">
                                             <div className="flex items-center space-x-3">
                                                 <div className="avatar">
                                                     <div className="w-12 h-12 mask mask-squircle">
@@ -56,38 +50,28 @@ const MyCard = () => {
                                                     </div>
                                                 </div>
                                                 <div>
-                                                    <div className="font-bold">{name}</div>
-                                                    <div className="text-sm opacity-50">{type}</div>
+                                                    <div className="text-xs font-bold lg:text-xl">{name}</div>
+                                                    <div className="text-[9px] lg:text-sm opacity-50">{type}</div>
                                                 </div>
                                             </div>
                                         </td>
-                                        <td className="flex items-center gap-5 my-4">
+                                        <td className="flex items-center justify-center gap-5 my-4 text-sm capitalize">
                                             {brand}
-                                            <span className="badge badge-ghost badge-sm"><StarRating rating={Rating}></StarRating></span>
+                                            <span className="hidden py-4 badge badge-ghost badge-sm lg:flex lg:items-center">
+                                                <StarRating rating={Rating}></StarRating>
+                                            </span>
                                         </td>
-                                        <td className="font-bold">${price}</td>
-                                        <th>
-                                            <button onClick={()=>handleDelete(_id)} className="btn btn-ghost btn-xs"><FaTrash></FaTrash></button>
+                                        <td className="w-1/6 text-xs font-bold sm:w-1/4 lg:w-1/5 lg:text-lg">${price}</td>
+                                        <th className="w-1/6 sm:w-1/4 lg:w-1/5">
+                                            <button onClick={() => handleDelete(_id)} className="btn btn-ghost btn-xs"><FaTrash></FaTrash></button>
                                         </th>
                                     </tr>
-                            )
-
-                        }))
-                    }
-
-                </tbody>
-                {/* foot */}
-                {/* <tfoot>
-                    <tr>
-                        <th></th>
-                        <th>Name</th>
-                        <th>Job</th>
-                        <th>Favorite Color</th>
-                        <th></th>
-                    </tr>
-                </tfoot> */}
-
-            </table>
+                                )
+                            }))
+                        }
+                    </tbody>
+                </table>
+            </div>
         </div>
     );
 };
