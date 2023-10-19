@@ -1,8 +1,23 @@
 import { NavLink } from "react-router-dom";
 import { FaUserCircle } from "react-icons/fa";
+import { useContext } from "react";
+import { userPovider } from "../../AuthProvider/AuthProvider";
+import Swal from "sweetalert2";
 
 
 const Header = () => {
+
+    const {logOut}  = useContext(userPovider)
+
+    const handleLogout = ()=>{
+        logOut()
+        .then(()=>{
+            Swal.fire(
+                'Logged Out!',
+                'success'
+                )
+        })
+    }
 
 
 
@@ -47,11 +62,11 @@ const Header = () => {
 
 
     return (
-        <nav className="navbar max-w-7xl mx-auto justify-between py-4 px-4 lg:px-0 border-b bg-transparent">
+        <nav className="justify-between px-4 py-4 mx-auto bg-transparent border-b navbar max-w-7xl lg:px-0">
             <div className="navbar-start">
                 <div className="dropdown">
                     <label tabIndex={0} className="btn bg-slate-300 lg:hidden">
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
                     </label>
                     <ul tabIndex={0} className=" dropdown-content mt-3 z-[1] p-2 shadow bg-black rounded-box w-52">
                         {
@@ -64,11 +79,11 @@ const Header = () => {
                 </div>
             </div>
             <div className="navbar-center ">
-                <div className="lg:hidden -ml-10">
+                <div className="-ml-10 lg:hidden">
                     <img className="w-24 mr-5" src="https://i.ibb.co/L5Cw2ph/logo.png" alt="" />
                 </div>
                 <div className="hidden ml-32 lg:flex">
-                    <ul className="font-semibold text-xl gap-4  menu-horizontal px-1">
+                    <ul className="gap-4 px-1 text-xl font-semibold menu-horizontal">
                         {
                             menuItems
                         }
@@ -76,16 +91,16 @@ const Header = () => {
                 </div>
             </div>
             <div className="navbar-end">
-                <> <div className="text-white font-bold ml-4 px-4 hidden lg:inline-block">name</div><div className="dropdown dropdown-end">
+                <> <div className="hidden px-4 ml-4 font-bold text-white lg:inline-block">name</div><div className="dropdown dropdown-end">
 
 
                     <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-                        <div className="  text-3xl">
+                        <div className="text-3xl ">
                             <FaUserCircle></FaUserCircle>
                         </div>
                     </label>
                     <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
-                        <li><button >Logout</button></li>
+                        <li><button onClick={handleLogout}>Logout</button></li>
                     </ul>
                 </div> </>
             </div>

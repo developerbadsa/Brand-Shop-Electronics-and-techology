@@ -47,6 +47,8 @@ const AuthProvider = ({children}) => {
     const userInfo = {
         createUser, loginEmail, user, logOut, 
     }
+
+    console.log(user);
     
     return (
         <userPovider.Provider value={userInfo}>
