@@ -31,7 +31,7 @@ const UpdatesProduct = () => {
 
         console.log(formData);
 
-        fetch(`http://localhost:5003/updateProduct/${id}`, {
+        fetch(`https://b8a10-brandshop-server-side-developerbadsa-hr55-bvhz6bdu9.vercel.app/updateProduct/${id}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
