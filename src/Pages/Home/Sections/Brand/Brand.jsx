@@ -10,7 +10,7 @@ const Brand = () => {
     
 
     useEffect(() => {
-        fetch('https://b8a10-brandshop-server-side-developerbadsa-hr55.vercel.app/brand')
+        fetch('https://technology-electronics-server.vercel.app/brand')
             .then(res => res.json())
             .then(brandData => {
                 setLoading(false)

@@ -27,7 +27,7 @@ const UpdatesProduct = () => {
     const onClic = (e) => {
         e.preventDefault();
 
-        fetch(`https://b8a10-brandshop-server-side-developerbadsa-hr55.vercel.app/updateProduct1/${id}`, {
+        fetch(`https://technology-electronics-server.vercel.app/updateProduct1/${id}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",

@@ -24,7 +24,7 @@ const BrandBasedProduct = () => {
   const productLength = parseInt(product.length)
 
   useEffect(() => {
-    fetch(`https://b8a10-brandshop-server-side-developerbadsa-hr55.vercel.app/product/${brand_name}`)
+    fetch(`https://technology-electronics-server.vercel.app/product/${brand_name}`)
       .then(data => data.json())
       .then(res => {
         setLoading(false)
