@@ -9,35 +9,41 @@ const MyCard = () => {
     const [newData, SetNewData] = useState(data);
     const isEmpty = newData.length;
 
-   
-    
+
+
 
     const handleDelete = (_id) => {
 
-        console.log(_id);
 
-        const URL = `http://localhost:5003/cart/${_id}`;
-        fetch(URL, {
-            method: "DELETE"
-        })
-        .then(res=>res.json())
-        .then(({deletedCount})=>{
+        const shouldDelete = window.confirm("Are you sure you want to delete this item?")
 
-            if(deletedCount){
-                const updatedData = newData.filter(item => item._id !== _id);
-                SetNewData(updatedData)
-                Swal.fire(
-                    'Deleted Item',
-                    'success'
-                    )
-            }
-        })
-        .catch(err=>console.log(err))
+
+        if (shouldDelete) {
+
+            const URL = `http://localhost:5003/cart/${_id}`;
+            fetch(URL, {
+                method: "DELETE"
+            })
+                .then(res => res.json())
+                .then(({ deletedCount }) => {
+
+                    if (deletedCount) {
+                        const updatedData = newData.filter(item => item._id !== _id);
+                        SetNewData(updatedData)
+                        Swal.fire(
+                            'Deleted Item',
+                            'success'
+                        )
+                    }
+                })
+                .catch(err => console.log(err))
+        }
+
     }
 
     return (
         <div className="px-5 mx-auto my-12 overflow-x-auto">
-            <div> 
+            <div>
                 <h3 className="my-6 text-xl font-bold text-center">Your Added Card</h3>
             </div>
             <div className="w-full ">
@@ -85,7 +91,7 @@ const MyCard = () => {
                         }
                     </tbody>
                 </table>
-               {!isEmpty && <div className="my-4 mr-32 text-xl font-bold text-center text-red-600">Currently No Data to Display To Add Data <Link to='/ourBrand' className="mx-4 italic text-blue-600 underline">Click Here</Link></div>}
+                {!isEmpty && <div className="my-4 mr-32 text-xl font-bold text-center text-red-600">Currently No Data to Display To Add Data <Link to='/ourBrand' className="mx-4 italic text-blue-600 underline">Click Here</Link></div>}
             </div>
         </div>
     );
