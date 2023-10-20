@@ -44,14 +44,14 @@ const Router = createBrowserRouter([
             {
                 path: '/cart',
                 element: <LoggedInPrivate><MyCard></MyCard></LoggedInPrivate>,
-                loader: ()=> fetch('https://b8a10-brandshop-server-side-developerbadsa-hr55-bvhz6bdu9.vercel.app/cart')
+                loader: ()=> fetch('http://localhost:5003/cart')
             },
             {
                 path: '/cart/:id',
                 element: <LoggedInPrivate><UpdatesProduct></UpdatesProduct></LoggedInPrivate>,
                 loader: ({params})=> {
                     console.log(params.id);
-                   return fetch(`https://b8a10-brandshop-server-side-developerbadsa-hr55-bvhz6bdu9.vercel.app/cart/${params.id}`)
+                   return fetch(`http://localhost:5003/cart/${params.id}`)
                 }
             },
             {

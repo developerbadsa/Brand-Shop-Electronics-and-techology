@@ -8,7 +8,7 @@ const ProductDetails = ({ SingleProduct }) => {
 
 
         return (
-            <div className="py-8 shadow-xl card lg:card-side bg-base-100">
+            <div className="px-6 py-8 shadow-xl card lg:card-side bg-base-100">
                 <figure className='flex-1'><img src={image} alt="Album" /></figure>
                 <div className="flex-1 card-body">
                     <h2 className="my-4 text-3xl font-extrabold card-title">{name}</h2>

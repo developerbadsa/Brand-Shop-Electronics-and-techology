@@ -1,10 +1,13 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
 
 
 
 const AddProduct = () => {
+
+    const pageNavigate = useNavigate()
 
     const [rating, setRating] = useState(0);
 
@@ -23,7 +26,7 @@ const AddProduct = () => {
         const ProductData = {name, image, brand, type, price, description, Rating}
 
 
-        fetch('https://b8a10-brandshop-server-side-developerbadsa-hr55-bvhz6bdu9.vercel.app/cart', {
+        fetch('http://localhost:5003/cart', {
 
         method: "POST",
         headers: {
@@ -38,6 +41,8 @@ const AddProduct = () => {
                 'You added successfully your product!',
                 'success'
                 )
+                pageNavigate(`/brand/${brand}`)
+                
         })
         .catch(()=>{
             Swal.fire({
@@ -67,11 +72,12 @@ const AddProduct = () => {
                         Image
                     </label>
                     <input
-                        type="text"
+                        type="link"
                         id="image"
                         name="image"
                         accept="image/*"
                         className="w-full p-2 mt-1 border border-gray-300 rounded-md"
+                        required
                     />
                 </div>
                 <div className="mb-4">
@@ -83,6 +89,7 @@ const AddProduct = () => {
                         id="name"
                         name="name"
                         className="w-full p-2 mt-1 border border-gray-300 rounded-md"
+                        required
                     />
                 </div>
                 <div className="mb-4">
@@ -93,6 +100,7 @@ const AddProduct = () => {
                         id="brand"
                         name="brand"
                         className="w-full p-2 mt-1 border border-gray-300 rounded-md"
+                        required
                     >
                         <option value="apple">Apple</option>
                         <option value="samsung">Samsung</option>
@@ -110,11 +118,11 @@ const AddProduct = () => {
                         id="type"
                         name="type"
                         className="w-full p-2 mt-1 border border-gray-300 rounded-md"
+                        required
                     >
                         <option value="phone">Phone</option>
                         <option value="computer">Computer</option>
                         <option value="headphone">Headphone</option>
-                        {/* Add more options as needed */}
                     </select>
                 </div>
                 <div className="mb-4">
@@ -129,6 +137,7 @@ const AddProduct = () => {
                         id="price"
                         name="price"
                         className="w-full p-2 mt-1 border border-gray-300 rounded-md"
+                        required
                     />
                 </div>
                 <div className="mb-4">
@@ -143,6 +152,7 @@ const AddProduct = () => {
                         name="description"
                         className="w-full p-2 mt-1 border border-gray-300 rounded-md"
                         defaultValue={""}
+                        required
                     />
                 </div>
                 <div className="mb-4">
@@ -162,6 +172,7 @@ const AddProduct = () => {
                   onChange={() => setRating(index + 1)}
                   checked={rating === index + 1}
                   className="sr-only"
+                  required
                 />
                 <span
                   className={`text-2xl ${

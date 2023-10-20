@@ -6,7 +6,6 @@ const UpdatesProduct = () => {
 
     const data = useLoaderData()
     const {id} = useParams()
-    console.log(id);
     
     const [formData, setFormData] = useState(data);
 
@@ -17,6 +16,8 @@ const UpdatesProduct = () => {
         setFormData({ ...formData, [name]: value });
     };
 
+    
+    //=========handle update
     const handleUpdate = (e) => {
 
         e.preventDefault()
@@ -31,7 +32,7 @@ const UpdatesProduct = () => {
 
         console.log(formData);
 
-        fetch(`https://b8a10-brandshop-server-side-developerbadsa-hr55-bvhz6bdu9.vercel.app/updateProduct/${id}`, {
+        fetch(`http://localhost:5003/updateProduct/${id}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
@@ -39,11 +40,12 @@ const UpdatesProduct = () => {
             body: JSON.stringify(formData),
         })
             .then((response) => {
-                if (response.ok) {
-                    console.log("Product updated successfully!");
-                } else {
-                    console.error("Failed to update product.");
-                }
+                console.log(response);
+                // if (response.ok) {
+                //     console.log("Product updated successfully!");
+                // } else {
+                //     console.error("Failed to update product.");
+                // }
             })
             .catch((error) => {
                 console.error("An error occurred while updating the product:", error);

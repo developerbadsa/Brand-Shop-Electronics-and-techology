@@ -21,7 +21,7 @@ const BrandBasedProduct = () => {
   const productLength = parseInt(product.length)
 
   useEffect(() => {
-    fetch(`https://b8a10-brandshop-server-side-developerbadsa-hr55-bvhz6bdu9.vercel.app/product/${brand_name}`)
+    fetch(`http://localhost:5003/product/${brand_name}`)
       .then(data => data.json())
       .then(res => setProduct(res))
       .catch()
@@ -36,8 +36,8 @@ const BrandBasedProduct = () => {
         <BrandSlider images={images}></BrandSlider>
 
       </div>
-
-      <div className="grid items-center justify-center grid-cols-1 gap-8 mx-4 md:grid-cols-2 md:mx-auto">
+      <div className="mt-24 text-4xl font-semibold text-center">Products of Brand <span className="font-extrabold text-blue-700 capitalize">{brand_name}</span></div>
+      <div className="grid items-center justify-center grid-cols-1 gap-8 mx-4 my-12 md:grid-cols-2 md:mx-auto">
         {
 
           productLength === 0 ? <div className="col-span-2 my-4"><WarningDirection ></WarningDirection> </div> : product.map(((SingleProduct, inx) => <ProductDetails key={inx} SingleProduct={SingleProduct}></ProductDetails>))
