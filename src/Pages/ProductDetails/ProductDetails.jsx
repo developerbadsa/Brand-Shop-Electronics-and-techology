@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import StarRating from "../../Components/Rating/Rating";
 import Swal from "sweetalert2";
 
 
 const ProductCardDetails = () => {
     const {id} = useParams()
+    const pageNavigate = useNavigate();
 
     const [productCardDetails, setProductCardDetails] = useState([])
 
@@ -34,6 +35,7 @@ const ProductCardDetails = () => {
             'This Product added to cart',
             'success'
             )
+            pageNavigate('/cart')
       })
       .catch(()=>{
         Swal.fire({
@@ -51,10 +53,10 @@ const ProductCardDetails = () => {
 
 
     return (
-        <div className="card lg:card-side bg-base-100 shadow-xl py-8">
+        <div className="py-8 shadow-xl card lg:card-side bg-base-100">
             <figure className='flex-1'><img src={image} alt="Album" /></figure>
-            <div className="card-body flex-1">
-                <h2 className="card-title font-extrabold text-3xl my-4">{name}</h2>
+            <div className="flex-1 card-body">
+                <h2 className="my-4 text-3xl font-extrabold card-title">{name}</h2>
                 <p className="text-base text-slate-400">{description}</p>
 
                 <div className="flex gap-4">
@@ -67,8 +69,8 @@ const ProductCardDetails = () => {
                     <StarRating rating={Rating}></StarRating>
                 </div>
 
-                <div className="flex gap-8 justify-end">
-                    <button onClick={handleAddToCard} className="btn bg-blue-600 hover:bg-amber-700 text-slate-100">Add To Card</button>
+                <div className="flex justify-end gap-8">
+                    <button onClick={handleAddToCard} className="bg-blue-600 btn hover:bg-amber-700 text-slate-100">Add To Card</button>
                 </div>
             </div>
         </div>

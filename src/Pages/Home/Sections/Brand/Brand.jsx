@@ -29,7 +29,7 @@ const Brand = () => {
                         const brand_name_lowecase = brandName
                         
                         return (
-                            <Link to={`brand/${brand_name_lowecase}`} key={_id} className="p-6 my-8 shadow-xl card bg-base-100">
+                            <Link to={`/brand/${brand_name_lowecase}`} key={_id} className="p-6 my-8 shadow-xl card bg-base-100">
                                 <div className="mx-auto card-body">
                                     <h2 className="text-3xl font-semibold card-title text-slate-600 ">{brandName}</h2>
                                 </div>

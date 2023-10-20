@@ -13,6 +13,7 @@ import LoggedOutPrivate from "./LoggedOutPrivate";
 import Contact from "../../Pages/Contact/Contact";
 import ErrorPage from "../../Pages/ErrorPage/ErrorPage";
 import UpdatesProduct from "../../Pages/ProductDetails/UpdatesProduct";
+import OurBrand from "../../Components/OurBrand/OurBrand";
 
 
 const Router = createBrowserRouter([
@@ -57,6 +58,10 @@ const Router = createBrowserRouter([
             {
                 path: '/addproduct',
                 element:<LoggedInPrivate><AddProduct></AddProduct></LoggedInPrivate>
+            },
+            {
+                path: '/ourBrand',
+                element:<LoggedInPrivate><OurBrand></OurBrand></LoggedInPrivate>
             },
             {
                 path: "/brand/:brand_name",

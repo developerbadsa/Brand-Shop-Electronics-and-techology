@@ -26,7 +26,7 @@ const AddProduct = () => {
         const ProductData = {name, image, brand, type, price, description, Rating}
 
 
-        fetch('http://localhost:5003/cart', {
+        fetch('http://localhost:5003/addproduct', {
 
         method: "POST",
         headers: {

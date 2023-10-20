@@ -8,9 +8,13 @@ const MyCard = () => {
     const data = useLoaderData();
     const [newData, SetNewData] = useState(data);
     const isEmpty = newData.length;
+
+   
     
 
     const handleDelete = (_id) => {
+
+        console.log(_id);
 
         const URL = `http://localhost:5003/cart/${_id}`;
         fetch(URL, {
@@ -28,6 +32,7 @@ const MyCard = () => {
                     )
             }
         })
+        .catch(err=>console.log(err))
     }
 
     return (
@@ -80,7 +85,7 @@ const MyCard = () => {
                         }
                     </tbody>
                 </table>
-               {!isEmpty && <div className="my-4 mr-32 text-xl font-bold text-center text-red-600">Currently No Data to Display To Add Data <Link to='/addproduct' className="mx-4 italic text-blue-600 underline">Click Here</Link></div>}
+               {!isEmpty && <div className="my-4 mr-32 text-xl font-bold text-center text-red-600">Currently No Data to Display To Add Data <Link to='/ourBrand' className="mx-4 italic text-blue-600 underline">Click Here</Link></div>}
             </div>
         </div>
     );
