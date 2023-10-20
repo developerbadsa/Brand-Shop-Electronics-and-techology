@@ -6,7 +6,7 @@ const AboutUs = () => {
       return (
             <div className='container px-6 mx-auto'>
                   <div className='my-6'>
-                        <h2 className='py-4 mt-8 text-2xl font-bold text-center text-slate-700 lg:py-6'>Welcome to TechPro Electronics - Technology & Electronics</h2>
+                        <h2 className='py-4 mt-8 text-2xl font-bold text-center text-slate-700 lg:py-6 dark:text-white'>Welcome to TechPro Electronics - Technology & Electronics</h2>
                         <p className='my-5 text-base text-center text-slate-400'>
                         At TechPro Electronics, we are passionate about harnessing the power of technology to make your life easier, more enjoyable, and more efficient. Our journey began over a decade ago when our founder, Sarah Smith, embarked on a mission to bridge the gap between cutting-edge technology and everyday living.
                         </p>

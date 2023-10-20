@@ -3,6 +3,7 @@ import { FaUserCircle } from "react-icons/fa";
 import { useContext } from "react";
 import { userPovider } from "../../AuthProvider/AuthProvider";
 import Swal from "sweetalert2";
+import DarkModeToggle from "../DarkAndLight/DarkAndLight";
 
 
 const Header = () => {
@@ -134,32 +135,37 @@ const Header = () => {
             <div className=" navbar-end">
                 {
                     user ? <> <div className="hidden px-4 ml-4 font-bold text-slate-500 xl:inline-block">{user?.displayName ? user.displayName : ''}</div>
-                     <Link to='/addproduct'><button className="mx-3 text-xs text-white bg-orange-600 hover:text-black btn btn-sm md:text-base">Add Product</button></Link>
-                    
-                    <div className="dropdown dropdown-end">
+                        <Link to='/addproduct'><button className="mx-3 text-xs text-white bg-orange-600 hover:text-black btn btn-sm md:text-base">Add Product</button></Link>
 
-                       
-                        <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-                            {
-                                user?.photoURL ? <div className="text-3xl btn btn-ghost btn-circle avatar">
-                                    <img className="max-w-[100px]" src={user.photoURL} alt="" />
-                                </div>
-                                    : <div className="text-3xl ">
-                                        <FaUserCircle></FaUserCircle>
+                        <div className="dropdown dropdown-end">
+
+
+                            <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+                                {
+                                    user?.photoURL ? <div className="text-3xl btn btn-ghost btn-circle avatar">
+                                        <img className="max-w-[100px]" src={user.photoURL} alt="" />
                                     </div>
-                            }
-                        </label>
-                        <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
-                            <li><button onClick={handleLogout}>Logout</button></li>
-                        </ul>
-                    </div>
-                    </> : <label className="btn btn-ghost btn-circle avatar disabled">
+                                        : <div className="text-3xl ">
+                                            <FaUserCircle></FaUserCircle>
+                                        </div>
+                                }
+                            </label>
+                            <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
+                                <li><button onClick={handleLogout}>Logout</button></li>
+                            </ul>
+                        </div>
+                    </> : <label className="flex btn btn-ghost btn-circle avatar">
+                        
                         <div className="text-3xl">
                             <FaUserCircle></FaUserCircle>
+
                         </div>
+                        
                     </label>
 
                 }
+                        <DarkModeToggle />
+
             </div>
         </nav>
     );
