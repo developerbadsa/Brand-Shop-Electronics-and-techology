@@ -1,38 +1,32 @@
-
 import { useState } from "react";
-import { Link, useLoaderData, useParams } from "react-router-dom";
+import { Link, Navigate, redirect, useLoaderData, useNavigate, useParams } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const UpdatesProduct = () => {
-
     const data = useLoaderData()
-    const {id} = useParams()
-    
+    const { id } = useParams()
+
+    const PageNavigate = useNavigate();
+
+
     const [formData, setFormData] = useState(data);
 
     const { image, name, brand, type, price, description, rating } = formData;
+
+
+    console.log(brand);
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
         setFormData({ ...formData, [name]: value });
     };
 
-    
+
     //=========handle update
-    const handleUpdate = (e) => {
+    const onClic = (e) => {
+        e.preventDefault();
 
-        e.preventDefault()
-        const image = e.target.image.value;
-        const name = e.target.name.value;
-        const brand = e.target.brand.value;
-        const type = e.target.type.value;
-        const price = e.target.price.value;
-        const description = e.target.description.value;
-
-        const formData = { image, name, brand, type, price, description, rating }
-
-        console.log(formData);
-
-        fetch(`http://localhost:5003/updateProduct/${id}`, {
+        fetch(`http://localhost:5003/updateProduct1/${id}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
@@ -41,21 +35,35 @@ const UpdatesProduct = () => {
         })
             .then((response) => {
                 console.log(response);
-                // if (response.ok) {
-                //     console.log("Product updated successfully!");
-                // } else {
-                //     console.error("Failed to update product.");
-                // }
+                if (response.ok) {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Wow! You have Updated your Product data Successfully',
+                        text: 'Something went wrong!',
+                        confirmButtonText: 'Show This Brand',
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            PageNavigate(`/brand/${brand}`)
+                        }
+                    });
+                } else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Failed to update Product',
+                        text: 'You might not have changed anything before clicking Update',
+                    });
+                }
             })
             .catch((error) => {
                 console.error("An error occurred while updating the product:", error);
             });
-    };
+    }
+
 
     return (
         <div className="max-w-md p-6 mx-auto bg-white rounded shadow-lg">
             <h2 className="mb-4 text-2xl font-semibold">Update Your Product</h2>
-            <form onSubmit={handleUpdate}>
+            <form >
                 <div className="mb-4">
                     <label htmlFor="image" className="block text-sm font-medium text-gray-700">
                         Image
@@ -173,6 +181,7 @@ const UpdatesProduct = () => {
                     <Link>
 
                         <button
+                            onClick={onClic}
                             type="submit"
                             className="px-4 py-2 font-semibold text-white bg-blue-500 rounded hover:bg-blue-600"
                         >

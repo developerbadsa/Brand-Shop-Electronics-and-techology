@@ -48,12 +48,12 @@ const Router = createBrowserRouter([
                 loader: ()=> fetch('http://localhost:5003/cart')
             },
             {
-                path: '/cart/:id',
-                element: <LoggedInPrivate><UpdatesProduct></UpdatesProduct></LoggedInPrivate>,
+                path: '/updatesProduct/:id',
                 loader: ({params})=> {
-                    console.log(params.id);
-                   return fetch(`http://localhost:5003/cart/${params.id}`)
-                }
+                    return fetch(`http://localhost:5003/updateProduct/${params.id}`)
+                 },
+                element: <LoggedInPrivate><UpdatesProduct></UpdatesProduct></LoggedInPrivate>,
+               
             },
             {
                 path: '/addproduct',

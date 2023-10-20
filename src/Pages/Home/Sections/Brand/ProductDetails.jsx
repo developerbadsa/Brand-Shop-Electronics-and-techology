@@ -25,7 +25,7 @@ const ProductDetails = ({ SingleProduct }) => {
                     </div>
 
                     <div className="flex justify-end gap-8">
-                       <Link to={`/cart/${_id}`}> <button className="bg-blue-600 btn hover:bg-amber-700 text-slate-100">Update</button></Link>
+                       <Link to={`/updatesProduct/${_id}`}> <button className="bg-blue-600 btn hover:bg-amber-700 text-slate-100">Update</button></Link>
                         <Link to={`/productCardDetails/${_id}`}><button className="btn bg-amber-700 hover:bg-blue-700 text-stone-100">View Details</button></Link>
                     </div>
                 </div>
