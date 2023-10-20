@@ -37,7 +37,7 @@ const BrandBasedProduct = () => {
 
       </div>
 
-      <div className="grid justify-center grid-cols-2 mx-auto">
+      <div className="grid items-center justify-center grid-cols-1 gap-8 mx-4 md:grid-cols-2 md:mx-auto">
         {
 
           productLength === 0 ? <div className="col-span-2 my-4"><WarningDirection ></WarningDirection> </div> : product.map(((SingleProduct, inx) => <ProductDetails key={inx} SingleProduct={SingleProduct}></ProductDetails>))
