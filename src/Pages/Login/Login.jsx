@@ -60,15 +60,15 @@ const Login = () => {
 
 
     return (
-        <div className="flex items-center align-middle">
+        <div className="items-center px-2 align-middle md:flex">
 
 
             <div className="flex-1">
-                <h2 className="mb-10 text-5xl font-bold">Please Log in Now</h2>
+                <h2 className="px-4 mb-10 text-5xl font-bold">Please Log in Now</h2>
 
 
 
-                <form onSubmit={handleLogin}>
+                <form className="px-6" onSubmit={handleLogin}>
                     <div className="mb-6">
                         <label
                             htmlFor="email"
@@ -123,8 +123,8 @@ const Login = () => {
                     </button>
                     <span className="px-4">If You Dont have account, Please <Link to='/register' className="text-blue-600 underline"> Register Here</Link></span>
                 </form>
-                <div className="flex justify-center gap-4 my-8">
-                    <button onClick={handleGoogleSignIn} className="text-2xl btn"> Sign in With Google Now <FaGoogle></FaGoogle></button>
+                <div className="flex justify-center gap-4 px-4 my-8">
+                    <button onClick={handleGoogleSignIn} className="text-xl btn"> Sign in With Google Now <FaGoogle></FaGoogle></button>
                 </div>
 
             </div>

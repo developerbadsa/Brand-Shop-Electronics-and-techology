@@ -1,10 +1,11 @@
 import { useState } from "react";
-import { Link, Navigate, redirect, useLoaderData, useNavigate, useParams } from "react-router-dom";
+import { Link, useLoaderData, useNavigate, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 
 const UpdatesProduct = () => {
     const data = useLoaderData()
     const { id } = useParams()
+
 
     const PageNavigate = useNavigate();
 
@@ -26,7 +27,7 @@ const UpdatesProduct = () => {
     const onClic = (e) => {
         e.preventDefault();
 
-        fetch(`http://localhost:5003/updateProduct1/${id}`, {
+        fetch(`https://b8a10-brandshop-server-side-developerbadsa-hr55.vercel.app/updateProduct1/${id}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
@@ -45,6 +46,7 @@ const UpdatesProduct = () => {
                         if (result.isConfirmed) {
                             PageNavigate(`/brand/${brand}`)
                         }
+                      
                     });
                 } else {
                     Swal.fire({

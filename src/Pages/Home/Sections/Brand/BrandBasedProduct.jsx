@@ -3,10 +3,13 @@ import { useParams } from "react-router-dom";
 import ProductDetails from "./ProductDetails";
 import BrandSlider from "../../../../Components/Slider/BrandSlider";
 import WarningDirection from "../../../../Components/Warning/WarningDirection";
+import LoadingSpinner from "../../../../Components/LoadingSpiner/LoadingSpiner";
 
 
 
 const BrandBasedProduct = () => {
+
+  const [loading, setLoading] = useState(true)
 
   const images = [
     "https://i.ibb.co/25w0FCX/1d648bd1cf760afe149e2583e1755e96.png",
@@ -21,9 +24,12 @@ const BrandBasedProduct = () => {
   const productLength = parseInt(product.length)
 
   useEffect(() => {
-    fetch(`http://localhost:5003/product/${brand_name}`)
+    fetch(`https://b8a10-brandshop-server-side-developerbadsa-hr55.vercel.app/product/${brand_name}`)
       .then(data => data.json())
-      .then(res => setProduct(res))
+      .then(res => {
+        setLoading(false)
+        setProduct(res)
+      })
       .catch()
 
 
@@ -31,7 +37,7 @@ const BrandBasedProduct = () => {
 
 
   return (
-    <div>
+    loading ? <LoadingSpinner></LoadingSpinner> : <div>
       <div className="flex items-center justify-center my-12">
         <BrandSlider images={images}></BrandSlider>
 

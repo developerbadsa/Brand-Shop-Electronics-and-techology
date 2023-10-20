@@ -1,15 +1,21 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import LoadingSpinner from "../../../../Components/LoadingSpiner/LoadingSpiner";
 
 
 const Brand = () => {
 
     const [brands, setBrand] = useState([]);
+    const [loading, setLoading] = useState(true);
+    
 
     useEffect(() => {
-        fetch('http://localhost:5003/brand')
+        fetch('https://b8a10-brandshop-server-side-developerbadsa-hr55.vercel.app/brand')
             .then(res => res.json())
-            .then(brandData => setBrand(brandData))
+            .then(brandData => {
+                setLoading(false)
+                 setBrand(brandData) 
+            })
 
     }, [])
 
@@ -17,7 +23,7 @@ const Brand = () => {
 
 
     return (
-        <div className="px-8 mx-auto my-12">
+        loading? <LoadingSpinner></LoadingSpinner>:<div className="px-8 mx-auto my-12">
 
                 <h2 className="my-2 text-4xl font-bold text-center">Our Brands</h2>
             <div className="grid justify-center grid-cols-1 gap-6 p-4 md:grid-cols-2 lg:grid-cols-3 md:gap-24">

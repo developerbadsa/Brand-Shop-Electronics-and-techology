@@ -70,8 +70,8 @@ const {createUser}  = useContext(userPovider)
 
 
     return (
-        <form onSubmit={handleSubmit} className="max-w-6xl mx-auto">
-            <h2 className="text-5xl font-bold mb-10 text-center mt-16" >Register Now</h2>
+        <form onSubmit={handleSubmit} className="max-w-6xl px-12 mx-auto">
+            <h2 className="mt-16 mb-10 text-5xl font-bold text-center" >Register Now</h2>
             <div className="relative z-0 w-full mb-6 group">
                 <input
                     type="email"

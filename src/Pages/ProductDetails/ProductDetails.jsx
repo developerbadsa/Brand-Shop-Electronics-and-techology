@@ -2,26 +2,30 @@ import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import StarRating from "../../Components/Rating/Rating";
 import Swal from "sweetalert2";
+import LoadingSpinner from "../../Components/LoadingSpiner/LoadingSpiner";
 
 
 const ProductCardDetails = () => {
     const {id} = useParams()
     const pageNavigate = useNavigate();
-
+    const [loading, setLoading] = useState(true);
     const [productCardDetails, setProductCardDetails] = useState([])
 
     useEffect(()=>{
 
-        fetch(`http://localhost:5003/productCardDetails/${id}`)
+        fetch(`https://b8a10-brandshop-server-side-developerbadsa-hr55.vercel.app/productCardDetails/${id}`)
         .then(res=>res.json())
-        .then(data=>setProductCardDetails(data))
+        .then(data=> {
+            
+            setProductCardDetails(data)})
+            setLoading(false)
 
 
     },[])
 
 
     const handleAddToCard = ()=>{
-        fetch("http://localhost:5003/cart", {
+        fetch("https://b8a10-brandshop-server-side-developerbadsa-hr55.vercel.app/cart", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -53,7 +57,7 @@ const ProductCardDetails = () => {
 
 
     return (
-        <div className="py-8 shadow-xl card lg:card-side bg-base-100">
+       loading? <LoadingSpinner></LoadingSpinner> : <div className="py-8 shadow-xl card lg:card-side bg-base-100">
             <figure className='flex-1'><img src={image} alt="Album" /></figure>
             <div className="flex-1 card-body">
                 <h2 className="my-4 text-3xl font-extrabold card-title">{name}</h2>

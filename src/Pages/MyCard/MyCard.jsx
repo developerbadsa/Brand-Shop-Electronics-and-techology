@@ -20,7 +20,7 @@ const MyCard = () => {
 
         if (shouldDelete) {
 
-            const URL = `http://localhost:5003/cart/${_id}`;
+            const URL = `https://b8a10-brandshop-server-side-developerbadsa-hr55.vercel.app/cart/${_id}`;
             fetch(URL, {
                 method: "DELETE"
             })
