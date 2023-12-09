@@ -11,6 +11,8 @@ The "Technology and Electronics Shop" is a web-based e-commerce platform designe
 - Implement user authentication with email and password.
 - Create an intuitive user experience for browsing and purchasing products.
 - Enable sellers to manage their product listings.
+## [Visit Live Site](https://technologyelectronics-f094b.web.app/)
+
 
 ## Features
 
