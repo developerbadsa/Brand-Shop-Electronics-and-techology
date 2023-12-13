@@ -27,7 +27,7 @@ const UpdatesProduct = () => {
     const onClic = (e) => {
         e.preventDefault();
 
-        fetch(`http://localhost:5003/updateProduct1/${id}`, {
+        fetch(`https://brand-shop-electronics-and-techology-server.vercel.app/updateProduct1/${id}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",

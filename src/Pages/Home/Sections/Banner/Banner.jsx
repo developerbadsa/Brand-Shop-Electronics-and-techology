@@ -10,7 +10,7 @@ const Banner = () => {
         console.log(e.target.email.value)
 
 
-        // fetch('http://localhost:5003/subscribe', {
+        // fetch('https://brand-shop-electronics-and-techology-server.vercel.app/subscribe', {
 
         // method: "POST",
         // headers: {
@@ -20,7 +20,7 @@ const Banner = () => {
 
         // })
 
-        await axios.post('http://localhost:5003/subscribe', { email: email })
+        await axios.post('https://brand-shop-electronics-and-techology-server.vercel.app/subscribe', { email: email })
         .then((res)=>{
 
             console.log(res.data.acknowledged)
