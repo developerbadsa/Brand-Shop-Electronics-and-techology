@@ -13,7 +13,7 @@ const ProductCardDetails = () => {
 
     useEffect(()=>{
 
-        fetch(`https://brand-shop-electronics-and-techology-server.vercel.app/productCardDetails/${id}`)
+        fetch(`http://localhost:5003/productCardDetails/${id}`)
         .then(res=>res.json())
         .then(data=> {
             
@@ -25,7 +25,7 @@ const ProductCardDetails = () => {
 
 
     const handleAddToCard = ()=>{
-        fetch("https://brand-shop-electronics-and-techology-server.vercel.app/cart", {
+        fetch("http://localhost:5003/cart", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

@@ -1,30 +1,44 @@
+import axios from "axios";
 import Swal from "sweetalert2";
 
 
 const Banner = () => {
 
-    const  handleSubscribe = (e)=>{
+    const  handleSubscribe = async (e)=>{
         e.preventDefault()
         const email = e.target.email.value
         console.log(e.target.email.value)
 
 
-        fetch('https://brand-shop-electronics-and-techology-server.vercel.app/subscribe', {
+        // fetch('http://localhost:5003/subscribe', {
 
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(email)
+        // method: "POST",
+        // headers: {
+        //     "Content-Type": "application/json",
+        //   },
+        //   body: JSON.stringify(email)
 
-        })
-        .then(()=>{
-            Swal.fire(
-                'Good job! You have Subscribed',
-                'You added successfully your product!',
-                'success'
-                )
-                pageNavigate(`/brand/${brand}`)
+        // })
+
+        await axios.post('http://localhost:5003/subscribe', { email: email })
+        .then((res)=>{
+
+            console.log(res.data.acknowledged)
+
+            if(res?.data?.acknowledged){
+                Swal.fire(
+                    'Good job! You have Subscribed',
+                    'You added successfully your product!',
+                    'success'
+                    )
+            }else{
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Something went wrong!'
+                    })
+            }
+
                 
         })
         .catch(()=>{
