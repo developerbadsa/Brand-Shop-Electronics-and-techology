@@ -14,6 +14,7 @@ import Contact from "../../Pages/Contact/Contact";
 import ErrorPage from "../../Pages/ErrorPage/ErrorPage";
 import UpdatesProduct from "../../Pages/ProductDetails/UpdatesProduct";
 import OurBrand from "../../Components/OurBrand/OurBrand";
+import UserProfile from "../../Components/Profile/Profile";
 
 
 const Router = createBrowserRouter([
@@ -62,6 +63,10 @@ const Router = createBrowserRouter([
             {
                 path: '/ourBrand',
                 element:<LoggedInPrivate><OurBrand></OurBrand></LoggedInPrivate>
+            },
+            {
+                path: '/userProfile',
+                element:<LoggedInPrivate><UserProfile></UserProfile></LoggedInPrivate>
             },
             {
                 path: "/brand/:brand_name",
