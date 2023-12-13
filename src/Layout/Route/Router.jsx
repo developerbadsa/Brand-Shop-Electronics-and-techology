@@ -45,12 +45,12 @@ const Router = createBrowserRouter([
             {
                 path: '/cart',
                 element: <LoggedInPrivate><MyCard></MyCard></LoggedInPrivate>,
-                loader: ()=> fetch('https://technology-electronics-server.vercel.app/cart')
+                loader: ()=> fetch('https://brand-shop-electronics-and-techology-server.vercel.app/cart')
             },
             {
                 path: '/updatesProduct/:id',
                 loader: ({params})=> {
-                    return fetch(`https://technology-electronics-server.vercel.app/updateProduct/${params.id}`)
+                    return fetch(`https://brand-shop-electronics-and-techology-server.vercel.app/updateProduct/${params.id}`)
                  },
                 element: <LoggedInPrivate><UpdatesProduct></UpdatesProduct></LoggedInPrivate>,
                

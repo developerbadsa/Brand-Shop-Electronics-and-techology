@@ -26,7 +26,7 @@ const AddProduct = () => {
         const ProductData = {name, image, brand, type, price, description, Rating}
 
 
-        fetch('https://technology-electronics-server.vercel.app/addproduct', {
+        fetch('https://brand-shop-electronics-and-techology-server.vercel.app/addproduct', {
 
         method: "POST",
         headers: {

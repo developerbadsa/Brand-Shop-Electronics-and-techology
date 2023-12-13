@@ -1,3 +1,4 @@
+import Swal from "sweetalert2";
 
 
 const Banner = () => {
@@ -8,7 +9,7 @@ const Banner = () => {
         console.log(e.target.email.value)
 
 
-        fetch('https://technology-electronics-server.vercel.app/subscribe', {
+        fetch('https://brand-shop-electronics-and-techology-server.vercel.app/subscribe', {
 
         method: "POST",
         headers: {

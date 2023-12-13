@@ -20,7 +20,7 @@ const MyCard = () => {
 
         if (shouldDelete) {
 
-            const URL = `https://technology-electronics-server.vercel.app/cart/${_id}`;
+            const URL = `https://brand-shop-electronics-and-techology-server.vercel.app/cart/${_id}`;
             fetch(URL, {
                 method: "DELETE"
             })
