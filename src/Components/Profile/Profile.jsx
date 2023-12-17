@@ -4,8 +4,6 @@ import { userPovider } from '../../AuthProvider/AuthProvider';
 const UserProfile = () => {
 
       const {  user } = useContext(userPovider)
-
-      console.log(user)
     return (
         <section className="p-4">
             <div className="text-center">

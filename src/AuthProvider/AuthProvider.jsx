@@ -55,7 +55,6 @@ const AuthProvider = ({ children }) => {
         createUser, loginEmail, user, logOut, loading, googleSign
     }
 
-    console.log(user);
 
     return (
         <userPovider.Provider value={userInfo}>

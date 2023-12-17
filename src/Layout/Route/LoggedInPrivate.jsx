@@ -7,8 +7,7 @@ import LoadingSpinner from "../../Components/LoadingSpiner/LoadingSpiner";
 const LoggedInPrivate = ({ children }) => {
 
     const { user, loading } = useContext(userPovider);
-    console.log(loading);
-    const navigate = useNavigate();
+   const navigate = useNavigate();
 
     useEffect(() => {
 

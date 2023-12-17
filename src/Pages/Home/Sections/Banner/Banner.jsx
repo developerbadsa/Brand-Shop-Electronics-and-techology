@@ -7,7 +7,6 @@ const Banner = () => {
     const  handleSubscribe = async (e)=>{
         e.preventDefault()
         const email = e.target.email.value
-        console.log(e.target.email.value)
 
 
         // fetch('https://brand-shop-electronics-and-techology-server.vercel.app/subscribe', {
@@ -23,7 +22,6 @@ const Banner = () => {
         await axios.post('https://brand-shop-electronics-and-techology-server.vercel.app/subscribe', { email: email })
         .then((res)=>{
 
-            console.log(res.data.acknowledged)
 
             if(res?.data?.acknowledged){
                 Swal.fire(

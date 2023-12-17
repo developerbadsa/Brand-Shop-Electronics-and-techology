@@ -17,7 +17,6 @@ const {createUser}  = useContext(userPovider)
         const password = e.target.password.value;
 
 
-        console.log(fullName, profile_pic);
 
 
         if (password.length < 6) {

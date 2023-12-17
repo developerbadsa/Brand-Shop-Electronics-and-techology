@@ -15,7 +15,6 @@ const UpdatesProduct = () => {
     const { image, name, brand, type, price, description, rating } = formData;
 
 
-    console.log(brand);
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -35,7 +34,6 @@ const UpdatesProduct = () => {
             body: JSON.stringify(formData),
         })
             .then((response) => {
-                console.log(response);
                 if (response.ok) {
                     Swal.fire({
                         icon: 'success',
